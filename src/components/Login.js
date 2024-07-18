@@ -37,46 +37,46 @@
 
 // export default Login;
 // src/components/Login.js
-import React, { useState } from 'react';
-import { CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js';
-import { useNavigate } from 'react-router-dom';
-import userPool from '../aws-config';
+// import React, { useState } from 'react';
+// import { CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js';
+// import { useNavigate } from 'react-router-dom';
+// import userPool from '../aws-config';
 
-function Login() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const navigate = useNavigate();
+// function Login() {
+//   const [username, setUsername] = useState('');
+//   const [password, setPassword] = useState('');
+//   const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+//   const handleSubmit = (event) => {
+//     event.preventDefault();
 
-    const user = new CognitoUser({ Username: username, Pool: userPool });
-    const authDetails = new AuthenticationDetails({ Username: username, Password: password });
+//     const user = new CognitoUser({ Username: username, Pool: userPool });
+//     const authDetails = new AuthenticationDetails({ Username: username, Password: password });
 
-    user.authenticateUser(authDetails, {
-      onSuccess: (result) => {
-        console.log('Login successful:', result);
-        navigate('/dashboard');
-      },
-      onFailure: (err) => {
-        console.error('Login failed:', err);
-      },
-    });
-  };
+//     user.authenticateUser(authDetails, {
+//       onSuccess: (result) => {
+//         console.log('Login successful:', result);
+//         navigate('/dashboard');
+//       },
+//       onFailure: (err) => {
+//         console.error('Login failed:', err);
+//       },
+//     });
+//   };
 
-  return (
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" />
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
-        <button type="submit">Login</button>
-      </form>
-    </div>
-  );
-}
+//   return (
+//     <div>
+//       <h2>Login</h2>
+//       <form onSubmit={handleSubmit}>
+//         <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" />
+//         <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
+//         <button type="submit">Login</button>
+//       </form>
+//     </div>
+//   );
+// }
 
-export default Login;
+// export default Login;
 // import React, { useState } from 'react';
 // import { CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js';
 // import { useNavigate } from 'react-router-dom';
@@ -153,3 +153,45 @@ export default Login;
 // }
 
 // export default Login;
+
+
+import React, { useState } from 'react';
+import { CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js';
+import { useNavigate } from 'react-router-dom';
+import userPool from '../aws-config';
+
+function Login() {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const user = new CognitoUser({ Username: username, Pool: userPool });
+    const authDetails = new AuthenticationDetails({ Username: username, Password: password });
+
+    user.authenticateUser(authDetails, {
+      onSuccess: (result) => {
+        console.log('Login successful:', result);
+        navigate('/dashboard');
+      },
+      onFailure: (err) => {
+        console.error('Login failed:', err);
+      },
+    });
+  };
+
+  return (
+    <div>
+      <h2>Login</h2>
+      <form onSubmit={handleSubmit}>
+        <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" />
+        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
+        <button type="submit">Login</button>
+      </form>
+    </div>
+  );
+}
+
+export default Login;

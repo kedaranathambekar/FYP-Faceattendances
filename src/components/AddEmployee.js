@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 function AddEmployee() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+  const [department, setDepartment] = useState('');
+  const [team, setTeam] = useState('');
   const [image, setImage] = useState(null);
   const navigate = useNavigate();
 
@@ -27,7 +29,7 @@ function AddEmployee() {
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ firstName, lastName, image: base64Image })
+          body: JSON.stringify({ firstName, lastName,department, team, image: base64Image })
         });
 
         const result = await response.json();
@@ -36,6 +38,8 @@ function AddEmployee() {
           
           setFirstName('');
           setLastName('');
+          setDepartment('');
+          setTeam('');
           setImage(null);
         } else {
           alert('Failed to add employee');
@@ -71,6 +75,20 @@ function AddEmployee() {
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
           placeholder="Last Name"
+          required
+        />
+         <input
+          type="text"
+          value={department}
+          onChange={(e) => setDepartment(e.target.value)}
+          placeholder="Department"
+          required
+        />
+        <input
+          type="text"
+          value={team}
+          onChange={(e) => setTeam(e.target.value)}
+          placeholder="Team"
           required
         />
         <input
