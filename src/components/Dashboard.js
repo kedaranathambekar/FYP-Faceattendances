@@ -84,6 +84,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function Dashboard() {
+  const username = localStorage.getItem('username'); 
   const navigate = useNavigate();
 
   const handleAddEmployee = () => {
@@ -95,7 +96,7 @@ function Dashboard() {
   return (
     <div>
       <h2>Dashboard</h2>
-      <p>Welcome to the Dashboard! This is a protected page accessible only after successful login.</p>
+      <p>Welcome to the Dashboard, {username}! This is a protected page accessible only after successful login.</p>
       <button onClick={handleAddEmployee}>Add Employee</button>
       <button onClick={handleListEmployees}>ListEmployees</button>
     </div>

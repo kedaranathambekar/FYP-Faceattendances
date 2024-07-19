@@ -174,6 +174,7 @@ function Login() {
     user.authenticateUser(authDetails, {
       onSuccess: (result) => {
         console.log('Login successful:', result);
+        localStorage.setItem('username', username);
         navigate('/dashboard');
       },
       onFailure: (err) => {
