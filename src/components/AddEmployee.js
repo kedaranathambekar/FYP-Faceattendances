@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+//import { useNavigate } from 'react-router-dom';
 
 function AddEmployee() {
   const [firstName, setFirstName] = useState('');
@@ -7,7 +7,7 @@ function AddEmployee() {
   const [department, setDepartment] = useState('');
   const [team, setTeam] = useState('');
   const [image, setImage] = useState(null);
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -55,9 +55,9 @@ function AddEmployee() {
     setImage(event.target.files[0]);
   };
 
-  const handleListEmployees = () => {
-    navigate('/list-employees');
-  };
+  // const handleListEmployees = () => {
+  //   navigate('/list-employees');
+  // };
 
   return (
     <div>
@@ -99,7 +99,7 @@ function AddEmployee() {
         />
         <button type="submit">Add Employee</button>
       </form>
-      <button onClick={handleListEmployees}>List Employees</button>
+      {/* <button onClick={handleListEmployees}>List Employees</button> */}
     </div>
   );
 }

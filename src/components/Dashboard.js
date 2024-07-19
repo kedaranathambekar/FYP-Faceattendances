@@ -89,12 +89,15 @@ function Dashboard() {
   const handleAddEmployee = () => {
     navigate('/add-employee');
   };
-
+  const handleListEmployees = () => {
+    navigate('/list-employees');
+  };
   return (
     <div>
       <h2>Dashboard</h2>
       <p>Welcome to the Dashboard! This is a protected page accessible only after successful login.</p>
       <button onClick={handleAddEmployee}>Add Employee</button>
+      <button onClick={handleListEmployees}>ListEmployees</button>
     </div>
   );
 }
