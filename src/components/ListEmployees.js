@@ -86,6 +86,7 @@ function ListEmployees() {
             <div>
               <p>FirstName:{employee.firstName} SecondName:{employee.lastName}</p>
               <p>Department:{employee.department} Team: {employee.team}</p>
+              <p>Department:{employee.department} Team: {employee.team}</p>
             </div>
             <button onClick={() => handleDelete(employee.id)}>
               <img src={deleteIcon} alt="Delete" width="20" height="20" />
@@ -93,7 +94,7 @@ function ListEmployees() {
           </li>
         ))}
       </ul>
-      {/* <button onClick={() => navigate(
+      {/* <button onClick={() => navigate('/add-employee')}>Add Employee</button> */}
     </div>
   );
 }
