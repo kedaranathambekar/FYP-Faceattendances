@@ -84,8 +84,8 @@ function ListEmployees() {
           <li key={employee.id}>
             {/* <img src={employee.imageUrl} alt={`${employee.firstName} ${employee.lastName}`} width="100" height="100" /> */}
             <div>
-              <p>FirstName:{employee.firstName} SecondName:{employee.lastName}</p>
-              <p>Department:{employee.department} Team: {employee.team}</p>
+              <p>FirstName:{employee.firstName} SecondName:{employee.lastName} Department:{employee.department} Team: {employee.team}</p>
+              {/* <p>Department:{employee.department} Team: {employee.team}</p> */}
               
             </div>
             <button onClick={() => handleDelete(employee.id)}>

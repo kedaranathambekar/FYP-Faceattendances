@@ -1,42 +1,3 @@
-// // src/components/Login.js
-// import React, { useState } from 'react';
-// import { CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js';
-// import userPool from '../aws-config';
-
-// function Login() {
-//   const [username, setUsername] = useState('');
-//   const [password, setPassword] = useState('');
-
-//   const handleSubmit = (event) => {
-//     event.preventDefault();
-
-//     const user = new CognitoUser({ Username: username, Pool: userPool });
-//     const authDetails = new AuthenticationDetails({ Username: username, Password: password });
-
-//     user.authenticateUser(authDetails, {
-//       onSuccess: (result) => {
-//         console.log('Login successful:', result);
-//       },
-//       onFailure: (err) => {
-//         console.error('Login failed:', err);
-//       },
-//     });
-//   };
-
-//   return (
-//     <div>
-//       <h2>Login</h2>
-//       <form onSubmit={handleSubmit}>
-//         <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" />
-//         <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
-//         <button type="submit">Login</button>
-//       </form>
-//     </div>
-//   );
-// }
-
-// export default Login;
-// src/components/Login.js
 // import React, { useState } from 'react';
 // import { CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js';
 // import { useNavigate } from 'react-router-dom';
@@ -56,6 +17,7 @@
 //     user.authenticateUser(authDetails, {
 //       onSuccess: (result) => {
 //         console.log('Login successful:', result);
+//         localStorage.setItem('username', username);
 //         navigate('/dashboard');
 //       },
 //       onFailure: (err) => {
@@ -77,93 +39,25 @@
 // }
 
 // export default Login;
-// import React, { useState } from 'react';
-// import { CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js';
-// import { useNavigate } from 'react-router-dom';
-// import userPool from '../aws-config';
-// import WebcamCapture from './WebcamCapture';
-
-// function Login() {
-//   const [username, setUsername] = useState('');
-//   const [password, setPassword] = useState('');
-//   const [capturedImage, setCapturedImage] = useState(null);
-//   const navigate = useNavigate();
-
-//   const handleCapture = (image) => {
-//     setCapturedImage(image);
-//   };
-
-//   const handleSubmit = (event) => {
-//     event.preventDefault();
-
-//     if (!capturedImage) {
-//       alert('Please capture an image first.');
-//       return;
-//     }
-
-//     const user = new CognitoUser({ Username: username, Pool: userPool });
-//     const authDetails = new AuthenticationDetails({ Username: username, Password: password });
-
-//     user.authenticateUser(authDetails, {
-//       onSuccess: (result) => {
-//         console.log('Login successful:', result);
-//         // Send capturedImage to backend for face recognition
-//         verifyFace(capturedImage, result);
-//       },
-//       onFailure: (err) => {
-//         console.error('Login failed:', err);
-//       },
-//     });
-//   };
-
-//   const verifyFace = async (image, authResult) => {
-//     try {
-//       const response = await fetch('your-backend-api/verify-face', {
-//         method: 'POST',
-//         headers: {
-//           'Content-Type': 'application/json',
-//           Authorization: authResult.getAccessToken().getJwtToken()
-//         },
-//         body: JSON.stringify({ image })
-//       });
-
-//       const result = await response.json();
-
-//       if (result.success) {
-//         navigate('/dashboard');
-//       } else {
-//         alert('Face verification failed.');
-//       }
-//     } catch (error) {
-//       console.error('Face verification error:', error);
-//     }
-//   };
-
-//   return (
-//     <div>
-//       <h2>Login</h2>
-//       <form onSubmit={handleSubmit}>
-//         <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" />
-//         <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
-//         <button type="submit">Login</button>
-//       </form>
-//       <WebcamCapture onCapture={handleCapture} />
-//     </div>
-//   );
-// }
-
-// export default Login;
-
-
-import React, { useState } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import { CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js';
 import { useNavigate } from 'react-router-dom';
 import userPool from '../aws-config';
+import Webcam from 'react-webcam';
+import axios from 'axios';
 
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [useFaceRecognition, setUseFaceRecognition] = useState(false);
   const navigate = useNavigate();
+  const webcamRef = useRef(null);
+
+  const videoConstraints = {
+    width: 1280,
+    height: 720,
+    facingMode: "user"
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -183,14 +77,64 @@ function Login() {
     });
   };
 
+  const handleFaceRecognitionLogin = useCallback(async () => {
+    const capture = () => {
+      const imageSrc = webcamRef.current.getScreenshot();
+      return imageSrc;
+    };
+
+    const imageSrc = capture();
+
+    try {
+      const response = await axios.post('http://127.0.0.1:5000/face-login', { image: imageSrc });
+
+      if (response.data.success) {
+        localStorage.setItem('username', response.data.username);
+        navigate('/dashboard');
+      } else {
+        alert('Face recognition login failed');
+      }
+    } catch (error) {
+      console.error('Error during face recognition login:', error);
+      alert('Error during face recognition login');
+    }
+  }, [navigate]);
+
   return (
     <div>
       <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" />
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
-        <button type="submit">Login</button>
-      </form>
+      <button onClick={() => setUseFaceRecognition(!useFaceRecognition)}>
+        {useFaceRecognition ? 'Use Traditional Login' : 'Use Face Recognition Login'}
+      </button>
+      {useFaceRecognition ? (
+        <div>
+          <Webcam
+            audio={false}
+            height={720}
+            ref={webcamRef}
+            screenshotFormat="image/jpeg"
+            width={1280}
+            videoConstraints={videoConstraints}
+          />
+          <button onClick={handleFaceRecognitionLogin}>Login with Face Recognition</button>
+        </div>
+      ) : (
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            placeholder="Username"
+          />
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+          />
+          <button type="submit">Login</button>
+        </form>
+      )}
     </div>
   );
 }
