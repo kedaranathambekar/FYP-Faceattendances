@@ -201,8 +201,9 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Dashboard from './components/Dashboard';
 import AddEmployee from './components/AddEmployee';
-import ListEmployees from './components/ListEmployees'; // Import the new component
-import ClockIn from './components/ClockIn'; // Import the new component
+import ListEmployees from './components/ListEmployees'; 
+import ClockIn from './components/ClockIn'; 
+import UpdateEmployee from './components/UpdateEmployee';
 
 function App() {
   return (
@@ -228,6 +229,7 @@ function App() {
             <Route path="/add-employee" element={<AddEmployee />} />
             <Route path="/list-employees" element={<ListEmployees />} /> {/* New Route */}
             <Route path="/clock-in" element={<ClockIn />} /> {/* New Route */}
+            <Route path="/update-employee/:id" element={<UpdateEmployee />} />
             <Route path="/" element={
               <section className="landing-section">
                 <h2>Welcome to the Face Recognition Attendance System</h2>
