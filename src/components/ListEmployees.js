@@ -48,6 +48,7 @@ import React, { useState, useEffect } from 'react';
 //import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import deleteIcon from '../assets/delete-icon.png'; 
+import { Link } from 'react-router-dom';
 
 function ListEmployees() {
   const [employees, setEmployees] = useState([]);
@@ -91,6 +92,7 @@ function ListEmployees() {
             <button onClick={() => handleDelete(employee.id)}>
               <img src={deleteIcon} alt="Delete" width="20" height="20" />
             </button>
+            <Link to={`/update-employee/${employee.id}`}>Update</Link>
           </li>
         ))}
       </ul>
