@@ -103,9 +103,9 @@ function Login() {
   return (
     <div>
       <h2>Login</h2>
-      <button onClick={() => setUseFaceRecognition(!useFaceRecognition)}>
-        {useFaceRecognition ? 'Use Traditional Login' : 'Use Face Recognition Login'}
-      </button>
+      {/* <button onClick={() => setUseFaceRecognition(!useFaceRecognition)}className='button'>
+        {useFaceRecognition ? 'Use keyboard Login' : 'Use Face Login'}
+      </button> */}
       {useFaceRecognition ? (
         <div>
           <Webcam
@@ -116,7 +116,7 @@ function Login() {
             width={1280}
             videoConstraints={videoConstraints}
           />
-          <button onClick={handleFaceRecognitionLogin}>Login with Face Recognition</button>
+          <button onClick={handleFaceRecognitionLogin}className='button'>Sign in</button>
         </div>
       ) : (
         <form onSubmit={handleSubmit}>
@@ -135,6 +135,9 @@ function Login() {
           <button type="submit">Login</button>
         </form>
       )}
+       <button onClick={() => setUseFaceRecognition(!useFaceRecognition)}className='button'>
+        {useFaceRecognition ? 'Use keyboard Login' : 'Use Face Login'}
+      </button>
     </div>
   );
 }
