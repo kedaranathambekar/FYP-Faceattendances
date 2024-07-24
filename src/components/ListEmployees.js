@@ -52,8 +52,7 @@ import { Link } from 'react-router-dom';
 
 function ListEmployees() {
   const [employees, setEmployees] = useState([]);
-  //const navigate = useNavigate();
-
+  
   useEffect(() => {
     const fetchEmployees = async () => {
       try {
