@@ -83,20 +83,20 @@ function ListEmployees() {
       <ul>
         {employees.map(employee => (
           <li key={employee.id}>
-            {/* <img src={employee.imageUrl} alt={`${employee.firstName} ${employee.lastName}`} width="100" height="100" /> */}
+            
             <div>
               <p>FirstName:{employee.firstName} SecondName:{employee.lastName} Department:{employee.department} Team: {employee.team}</p>
-              {/* <p>Department:{employee.department} Team: {employee.team}</p> */}
               
             </div>
             <button onClick={() => handleDelete(employee.id)}>
               <img src={deleteIcon} alt="Delete" width="20" height="20" />
             </button>
-            <Link to={`/update-employee/${employee.id}`}>Update</Link>
+            {/* <Link to={`/update-employee/${employee.id}`}>Update</Link> */}
+            <Link to={`/update-employee/${employee.id}`} className="button">Update</Link>
           </li>
         ))}
       </ul>
-      {/* <button onClick={() => navigate('/add-employee')}>Add Employee</button> */}
+      
     </div>
   );
 }

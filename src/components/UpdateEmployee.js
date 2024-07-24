@@ -37,7 +37,17 @@ function UpdateEmployee() {
         body: JSON.stringify(employee),
       });
 
-  
+      if (response.ok) {
+        alert('Employee updated successfully');
+        navigate('/list-employees');
+      } else {
+        const result = await response.json();
+        alert(`Failed to update employee: ${result.error}`);
+      }
+    } catch (err) {
+      alert(`Error updating employee: ${err.message}`);
+    }
+  };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
