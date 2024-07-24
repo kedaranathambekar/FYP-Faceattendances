@@ -97,8 +97,8 @@ function Dashboard() {
     <div>
       <h2>Dashboard</h2>
       <p>Welcome to the Dashboard, {username}! This is a protected page accessible only after successful login.</p>
-      <button onClick={handleAddEmployee}>Add Employee</button>
-      <button onClick={handleListEmployees}>ListEmployees</button>
+      <button onClick={handleAddEmployee} className="button">Add Employee</button>
+      <button onClick={handleListEmployees} className="button">ListEmployees</button>
     </div>
   );
 }

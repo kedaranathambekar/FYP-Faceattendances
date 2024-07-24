@@ -61,6 +61,7 @@ function UpdateEmployee() {
     <div>
       <h2>Update Employee</h2>
       <form onSubmit={handleSubmit}>
+        <p>FirstName:
         <input
           type="text"
           name="firstName"
@@ -69,6 +70,8 @@ function UpdateEmployee() {
           placeholder="First Name"
           required
         />
+        </p>
+        <p>SecondName:
         <input
           type="text"
           name="lastName"
@@ -76,7 +79,8 @@ function UpdateEmployee() {
           onChange={handleChange}
           placeholder="Last Name"
           required
-        />
+        /></p>
+        <p>Department:
         <input
           type="text"
           name="department"
@@ -84,7 +88,8 @@ function UpdateEmployee() {
           onChange={handleChange}
           placeholder="Department"
           required
-        />
+        /></p>
+        <p>Team:
         <input
           type="text"
           name="team"
@@ -92,7 +97,7 @@ function UpdateEmployee() {
           onChange={handleChange}
           placeholder="Team"
           required
-        />
+        /></p>
         <button type="submit">Update Employee</button>
       </form>
     </div>
