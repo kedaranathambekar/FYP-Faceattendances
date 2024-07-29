@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-//import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function AddEmployee() {
+  const [employeeId, setEmployeeId] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [department, setDepartment] = useState('');
   const [team, setTeam] = useState('');
   const [image, setImage] = useState(null);
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -22,25 +23,25 @@ function AddEmployee() {
     reader.onloadend = async () => {
       const base64Image = reader.result;
 
-     
       try {
         const response = await fetch('http://127.0.0.1:5000/add-employee', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ firstName, lastName,department, team, image: base64Image })
+          body: JSON.stringify({ employeeId, firstName, lastName, department, team, image: base64Image })
         });
 
         const result = await response.json();
         if (result.success) {
-          alert('Employee added successfully');
-          
+          //alert('Employee added successfully');
+          setEmployeeId('');
           setFirstName('');
           setLastName('');
           setDepartment('');
           setTeam('');
           setImage(null);
+          navigate('/list-employees');
         } else {
           alert('Failed to add employee');
         }
@@ -55,14 +56,21 @@ function AddEmployee() {
     setImage(event.target.files[0]);
   };
 
-  // const handleListEmployees = () => {
-  //   navigate('/list-employees');
-  // };
+  const handleListEmployees = () => {
+    navigate('/list-employees');
+  };
 
   return (
     <div>
       <h2>Add Employee</h2>
       <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={employeeId}
+          onChange={(e) => setEmployeeId(e.target.value)}
+          placeholder="Employee ID"
+          required
+        />
         <input
           type="text"
           value={firstName}
@@ -77,7 +85,7 @@ function AddEmployee() {
           placeholder="Last Name"
           required
         />
-         <input
+        <input
           type="text"
           value={department}
           onChange={(e) => setDepartment(e.target.value)}
@@ -99,7 +107,7 @@ function AddEmployee() {
         />
         <button type="submit">Add Employee</button>
       </form>
-      {/* <button onClick={handleListEmployees}>List Employees</button> */}
+      <button onClick={handleListEmployees}>List Employees</button>
     </div>
   );
 }

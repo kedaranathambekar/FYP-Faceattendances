@@ -167,3 +167,39 @@ ul li button img:hover {
 .button:hover {
   background-color: #218838;
 }
+
+/* Add this CSS to your App.css or a relevant CSS file */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+table th, table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+table th {
+  background-color: #f2f2f2;
+}
+
+table tr:hover {
+  background-color: #f1f1f1;
+}
+
+button {
+  background-color: green;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button img {
+  width: 20px;
+  height: 20px;
+}
