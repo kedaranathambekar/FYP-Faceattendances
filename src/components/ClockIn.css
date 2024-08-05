@@ -1,0 +1,27 @@
+.clockin-container {
+    text-align: center;
+  }
+  
+  .webcam-container {
+    margin: 20px 0;
+  }
+  
+  .employee-card {
+    display: inline-block;
+    border: 2px solid #ff9900;
+    padding: 20px;
+    background-color: #ffcc00;
+    border-radius: 10px;
+    text-align: left;
+  }
+  
+  .employee-card img {
+    width: 100%;
+    border-radius: 10px;
+  }
+  
+  .employee-card h3,
+  .employee-card p {
+    margin: 5px 0;
+  }
+  

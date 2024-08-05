@@ -1,50 +1,3 @@
-/* .App {
-  text-align: center;
-  font-family: Arial, sans-serif;
-}
-
-.App-header {
-  background-color: #282c34;
-  padding: 20px;
-  color: white;
-}
-
-.landing-section {
-  padding: 50px;
-}
-
-.landing-section h2 {
-  font-size: 2em;
-  margin-bottom: 20px;
-}
-
-.landing-section p {
-  font-size: 1.2em;
-  margin-bottom: 40px;
-}
-
-.button-group {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
-
-.main-button {
-  padding: 10px 20px;
-  font-size: 1em;
-  cursor: pointer;
-  background-color: #61dafb;
-  border: none;
-  border-radius: 5px;
-  color: white;
-  transition: background-color 0.3s;
-}
-
-.main-button:hover {
-  background-color: #21a1f1;
-} */
-/* App.css */
-
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -168,7 +121,7 @@ ul li button img:hover {
   background-color: #218838;
 }
 
-/* Add this CSS to your App.css or a relevant CSS file */
+
 
 table {
   width: 100%;
@@ -202,4 +155,31 @@ button {
 button img {
   width: 20px;
   height: 20px;
+}
+
+.clockin-container {
+  text-align: center;
+}
+
+.webcam-container {
+  margin: 20px 0;
+}
+
+.employee-card {
+  display: inline-block;
+  border: 2px solid #ff9900;
+  padding: 20px;
+  background-color: #ffcc00;
+  border-radius: 10px;
+  text-align: left;
+}
+
+.employee-card img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.employee-card h3,
+.employee-card p {
+  margin: 5px 0;
 }

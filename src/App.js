@@ -204,6 +204,7 @@ import AddEmployee from './components/AddEmployee';
 import ListEmployees from './components/ListEmployees'; 
 import ClockIn from './components/ClockIn'; 
 import UpdateEmployee from './components/UpdateEmployee';
+import ClockInRecords from './components/ClockInRecords';
 
 function App() {
   return (
@@ -215,10 +216,11 @@ function App() {
             <Link to="/">Home</Link>
             <Link to="/login">Login</Link>
             <Link to="/register">Register</Link>
-            <Link to="/add-employee">Add Employee</Link> {/* Add Employee Link */}
-            <Link to="/clock-in">Clock In</Link> {/* New Link */}
+            <Link to="/add-employee">Add Employee</Link> 
+            <Link to="/clock-in">Clock In</Link> 
+            <Link to="/records">Records</Link>
             
-            {/* <Link to="/list-employees">List Employees</Link> New Link */}
+            
           </nav>
         </header>
         <main>
@@ -227,9 +229,10 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/add-employee" element={<AddEmployee />} />
-            <Route path="/list-employees" element={<ListEmployees />} /> {/* New Route */}
-            <Route path="/clock-in" element={<ClockIn />} /> {/* New Route */}
+            <Route path="/list-employees" element={<ListEmployees />} /> 
+            <Route path="/clock-in" element={<ClockIn />} /> 
             <Route path="/update-employee/:id" element={<UpdateEmployee />} />
+            <Route path="/records" element={<ClockInRecords />} />
             <Route path="/" element={
               <section className="landing-section">
                 <h2>Welcome to the Face Recognition Attendance System</h2>
