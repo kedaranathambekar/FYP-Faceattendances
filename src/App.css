@@ -183,3 +183,128 @@ button img {
 .employee-card p {
   margin: 5px 0;
 }
+
+/* App.css */
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+.App-header {
+  background-color: #333;
+  padding: 10px;
+  color: white;
+  text-align: center;
+}
+
+nav a {
+  margin: 0 15px;
+  color: white;
+  text-decoration: none;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+.home-page {
+  padding: 20px;
+}
+
+.title {
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.content-sections {
+  display: flex;
+  justify-content: space-around;
+}
+
+.section {
+  width: 45%;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.section h3 {
+  margin-top: 0;
+}
+
+.section p, .section ul {
+  margin: 0;
+}
+
+.section ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+/* App.css */
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+.App-header {
+  background-color: #333;
+  padding: 10px;
+  color: greenyellow;
+  text-align: center;
+}
+
+nav a {
+  margin: 0 15px;
+  color: orange;
+  text-decoration: none;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+.home-page {
+  padding: 20px;
+}
+
+.title {
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.content-sections {
+  display: flex;
+  justify-content: space-around;
+}
+
+.section {
+  width: 45%;
+  padding: 20px;
+  background-color: lightblue;
+  border: 2px solid black;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.section h3 {
+  margin-top: 0;
+}
+
+.icon-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.icon-list li {
+  margin: 10px 0;
+  font-size: 1.2em;
+}
+
+.icon-list i {
+  margin-right: 10px;
+  color: #555;
+}

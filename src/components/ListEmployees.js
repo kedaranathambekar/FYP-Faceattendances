@@ -48,19 +48,19 @@ function ListEmployees() {
         <thead>
           <tr>
             <th>Employee ID</th>
-            <th>Photo</th>
+            
             <th>FirstName</th>
             <th>LastName</th>
             <th>Department</th>
             <th>Team</th>
-            <th>Actions</th>
+            <th>Update/Delete</th>
           </tr>
         </thead>
         <tbody>
           {employees.map((employee) => (
             <tr key={employee.id}>
               <td>{employee.employeeId}</td>
-              <td><img src={employee.imageUrl} alt={employee.firstName} /></td>
+              
               <td>{employee.firstName}</td> <td>{employee.lastName}</td>
               <td>{employee.department}</td>
               <td>{employee.team}</td>
