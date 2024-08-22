@@ -23,18 +23,17 @@ function ClockInRecords() {
       <table>
         <thead>
           <tr>
-            <th>Employee ID</th>
             <th>First Name</th>
             <th>Department</th>
             <th>Team</th>
             <th>Time</th>
+            <th>Image</th>
             
           </tr>
         </thead>
         <tbody>
           {records.map(record => (
             <tr key={record.id}>
-              <td>{record.employeeId}</td>
               <td>{record.firstName} {record.lastName}</td>
               <td>{record.department}</td>
               <td>{record.team}</td>

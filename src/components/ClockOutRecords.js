@@ -23,7 +23,6 @@ function ClockOutRecords() {
       <table>
         <thead>
           <tr>
-            <th>Employee ID</th>
             <th>First Name</th>
             <th>Last Name</th>
             <th>Department</th>
@@ -35,7 +34,7 @@ function ClockOutRecords() {
         <tbody>
           {records.map((record) => (
             <tr key={record.id}>
-              <td>{record.employeeId}</td>
+              
               <td>{record.firstName}</td>
               <td>{record.lastName}</td>
               <td>{record.department}</td>

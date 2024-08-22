@@ -34,7 +34,7 @@ function AddEmployee() {
 
         const result = await response.json();
         if (result.success) {
-          //alert('Employee added successfully');
+          
           setEmployeeId('');
           setFirstName('');
           setLastName('');
@@ -56,9 +56,7 @@ function AddEmployee() {
     setImage(event.target.files[0]);
   };
 
-  const handleListEmployees = () => {
-    navigate('/list-employees');
-  };
+ 
 
   return (
     <div>
@@ -107,7 +105,7 @@ function AddEmployee() {
         />
         <button type="submit">Add Employee</button>
       </form>
-      <button onClick={handleListEmployees}>List Employees</button>
+      
     </div>
   );
 }

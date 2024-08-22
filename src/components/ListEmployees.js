@@ -27,7 +27,7 @@ function ListEmployees() {
       });
 
       if (response.ok) {
-        alert('Employee deleted successfully');
+        
         fetchEmployees();
       } else {
         alert('Failed to delete employee');

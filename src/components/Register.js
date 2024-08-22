@@ -1,4 +1,3 @@
-// src/components/Register.js
 import React, { useState } from 'react';
 import { CognitoUserAttribute } from 'amazon-cognito-identity-js';
 import userPool from '../aws-config';

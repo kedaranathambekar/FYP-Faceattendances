@@ -50,12 +50,11 @@ function App() {
           <nav>
             <Link to="/">Home</Link>
             <Link to="/login">Login</Link>
-            <Link to="/register">Register</Link>
-            <Link to="/add-employee">Add Employee</Link> 
+            
             <Link to="/clock-in">Clock In</Link> 
-            <Link to="/records">Records</Link>
+            
             <Link to="/clock-out">Clock Out</Link>
-            <Link to="/recordsout">Records Out</Link> 
+            
             
             
             
