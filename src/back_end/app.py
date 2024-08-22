@@ -165,7 +165,7 @@ def clock_out():
                         'timestamp': timestamp,
                         'image': captured_image
                     }
-                    clockout_table.put_item(Item=record)  # Store in clock-out table
+                    clockout_table.put_item(Item=record)  
                     return jsonify({
                         'success': True, 
                         'employee': employee,
@@ -183,62 +183,7 @@ def clock_out():
 
     
 
-# @app.route('/clock-out', methods=['POST'])
-# def clock_out():
-#     try:
-#         data = request.get_json()
-#         captured_image = data['image']
-#         captured_image_bytes = base64.b64decode(captured_image.split(',')[1])
 
-        
-#         table = dynamodb.Table('Employees')
-#         response = table.scan()
-#         employees = response['Items']
-
-#         for employee in employees:
-#             image_url = employee['imageUrl']
-#             key = image_url.split('https://projectkedhar.s3.amazonaws.com/')[1]
-#             print(f"Trying to get object with key: {key}")
-
-#             try:
-#                 s3_object = s3.get_object(Bucket='projectkedhar', Key=key)
-#                 stored_image = s3_object['Body'].read()
-
-                
-#                 response = rekognition.compare_faces(
-#                     SourceImage={'Bytes': captured_image_bytes},
-#                     TargetImage={'Bytes': stored_image},
-#                     SimilarityThreshold=90
-#                 )
-
-#                 if response['FaceMatches']:
-                    
-#                     timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-#                     record = {
-#                         'id': str(uuid.uuid4()),
-#                         'employeeId': employee['id'],
-#                         'firstName': employee['firstName'],
-#                         'lastName': employee['lastName'],
-#                         'department': employee['department'],
-#                         'team': employee['team'],
-#                         'timestamp': timestamp,
-#                         'image': captured_image
-#                     }
-#                     clockin_table.put_item(Item=record)
-#                     return jsonify({
-#                         'success': True,
-#                         'employee': employee,
-#                         'capturedImage': captured_image
-#                     }), 200
-#             except Exception as e:
-#                 print(f"Error fetching object {key}: {e}")
-
-#         return jsonify({'success': False, 'error': 'No matching faces found'}), 404
-
-#     except Exception as e:
-#         print("Error:", e)
-#         print(traceback.format_exc())
-#         return jsonify({'success': False, 'error': str(e)}), 500
 
 
 @app.route('/delete-employee/<id>', methods=['DELETE'])
@@ -333,16 +278,7 @@ def get_clock_in_records():
         return jsonify({'success': False, 'error': str(e)}), 500
     
 
-# @app.route('/clock-out-records', methods=['GET'])
-# def get_clock_out_records():
-#     try:
-#         clock_in_table = dynamodb.Table('ClockOutRecords')
-#         response = clock_in_table.scan()
-#         records = response['Items']
-#         return jsonify(records), 200
-#     except Exception as e:
-#         print("Error:", e)
-#         return jsonify({'success': False, 'error': str(e)}), 500
+
 
 
 @app.route('/clock-out-records', methods=['GET'])
@@ -384,12 +320,12 @@ def get_dashboard_metrics():
         employees_table = dynamodb.Table('Employees')
         records_table = dynamodb.Table('ClockInRecords')
 
-        # Total number of employees
+        
         employees_response = employees_table.scan()
         employees_count = employees_response['Count']
         print("Employees response:", employees_response)
 
-        # Total number of clock-ins for today
+      
         today = datetime.now().strftime('%Y-%m-%d')
         clock_ins_response = records_table.scan(
             FilterExpression="contains(clockInTime, :today)",
@@ -398,7 +334,7 @@ def get_dashboard_metrics():
         clock_ins_today = clock_ins_response['Count']
         print("Clock-ins response:", clock_ins_response)
 
-        # Fetch recent clock-in activity
+        
         recent_clock_ins_response = records_table.scan()
         recent_clock_ins = sorted(recent_clock_ins_response['Items'], key=lambda x: x['clockInTime'], reverse=True)[:5]
         print("Recent clock-ins response:", recent_clock_ins_response)
