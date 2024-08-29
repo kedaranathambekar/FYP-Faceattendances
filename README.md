@@ -8,7 +8,7 @@ StudentID : 20091631
 ATTENDANCE SYSTEM USING FACE-RECOGNITION
 
 ### Academic Title
-y
+
 Innovative Face Recognition Technology for Attendance Systems
 
 
